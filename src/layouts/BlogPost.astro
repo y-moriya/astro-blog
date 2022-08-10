@@ -1,6 +1,7 @@
 ---
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
+import dayjs from "dayjs";
 
 export interface Props {
 	content: {
@@ -38,7 +39,7 @@ const {
 					/>
 				)}
 				<h1 class="title">{title}</h1>
-				<time>{publishDate}</time>
+				<time>{dayjs(publishDate).format('YYYY-MM-DD')}</time>
 			</header>
 			<main>
 				<slot></slot>

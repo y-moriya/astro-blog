@@ -14,7 +14,11 @@
     "astro": "^1.0.0"
   },
   "dependencies": {
+    "@mapbox/node-pre-gyp": "^1.0.9",
+    "@types/node": "^18.7.1",
+    "canvas": "^2.9.3",
     "dayjs": "^1.11.4",
+    "node-path": "^0.0.3",
     "preact": "^10.7.3"
   }
 }

@@ -23,8 +23,8 @@ export async function getStaticPaths({ }) {
 
 const { page } = Astro.props
 const { month } = Astro.params
-let title = `Posts by Month: ${month}`
-let description = `all of the articles we've posted and linked so far under the month: "${month}"`
+let title = `${dayjs(month).format('YYYY年MM月')}`
+let description = `${dayjs(month).format('YYYY年MM月')}の投稿`
 
 ---
 <MainLayout 
@@ -33,10 +33,12 @@ let description = `all of the articles we've posted and linked so far under the 
     {page.sort((a: any, b: any) => {
       return new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf();
     }).map(({ url, frontmatter }: any) => (
+    <ul>
     <BlogPostSimple
       title={frontmatter.title}
       publishDate={frontmatter.publishDate}
       url={url as string}
     />
+    </ul>
     ))}
 </MainLayout>
