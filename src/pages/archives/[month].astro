@@ -7,11 +7,11 @@ export async function getStaticPaths({ }) {
   const allPosts = await Astro.glob('../posts/*.md');
   const allMonths = new Set();
   allPosts.map(post => {
-      post.frontmatter.publishDate && allMonths.add(dayjs(post.frontmatter.publishDate).format('YYYY-MM'));
+      post.frontmatter.pubDate && allMonths.add(dayjs(post.frontmatter.pubDate).format('YYYY-MM'));
   });
 
   return Array.from(allMonths).map((month) => {
-    const filteredPosts = allPosts.filter((post) => dayjs(post.frontmatter.publishDate).format('YYYY-MM') === month);
+    const filteredPosts = allPosts.filter((post) => dayjs(post.frontmatter.pubDate).format('YYYY-MM') === month);
     return {
       params: { month },
       props: {
@@ -31,12 +31,12 @@ let description = `${dayjs(month).format('YYYY年MM月')}の投稿`
   title={title} description={description}>
     <h1 class="font-size-3">{title}</h1>
     {page.sort((a: any, b: any) => {
-      return new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf();
+      return new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf();
     }).map(({ url, frontmatter }: any) => (
     <ul>
     <BlogPostSimple
       title={frontmatter.title}
-      publishDate={frontmatter.publishDate}
+      pubDate={frontmatter.pubDate}
       url={url as string}
     />
     </ul>

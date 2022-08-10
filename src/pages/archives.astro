@@ -8,8 +8,8 @@ let description = '月別アーカイブ'
 // Data Fetching: List all Markdown posts in the repo.
 const allPosts = await Astro.glob('./posts/*.md');
 const months = [...new Set(allPosts.sort((a: any, b: any) => {
-  return new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
-}).map(post => dayjs(post.frontmatter.publishDate).format('YYYY-MM')))];
+  return new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
+}).map(post => dayjs(post.frontmatter.pubDate).format('YYYY-MM')))];
 ---
 <MainLayout title={ title } description={ description }>
     <h1 class="font-size-3">Archives</h1>

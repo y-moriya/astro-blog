@@ -28,7 +28,7 @@ const CANVAS_HEIGHT = 630;
 const FONT_SIZE = 60;
 const SPACING = 1.5;
 const FONT_HEIGHT = FONT_SIZE * SPACING;
-const BLOG_NAME = `Stoicism`;
+const BLOG_NAME = `Stoicism @euro_s`;
 
 function drawOGImage(title: string, og_title: string): Buffer {
   registerFont("src/lib/NotoSansCJKjp-Regular.ttf", {

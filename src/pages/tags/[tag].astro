@@ -30,11 +30,11 @@ let description = `all of the articles we've posted and linked so far under the 
   title={title} description={description}>
     <h1 class="font-size-3">{title}</h1>
     {page.sort((a: any, b: any) => {
-      return new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf();
+      return new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf();
     }).map(({ url, frontmatter }: any) => (
     <BlogPostSimple
       title={frontmatter.title}
-      publishDate={frontmatter.publishDate}
+      pubDate={frontmatter.pubDate}
       url={url as string}
     />
     ))}

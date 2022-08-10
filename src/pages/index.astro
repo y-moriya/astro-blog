@@ -8,20 +8,27 @@ const pinnedPosts = unsortedPosts.filter((p) => {
 	return p.frontmatter.pinned;
 }).sort(function (a, b) {
 	return (
-		new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
+		new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
 	);
 });
 ---
 
 <MainLayout title="Top | Stoicism" description="なんかしらの日記のようなものを綴るブログ">
+	<h3 class="description">なんかしらの日記のようなものを綴るブログ</h3>
 	<h2>固定されている記事</h2>
 	<hr>
 {pinnedPosts.map(({ url, frontmatter }: any) => (
 <BlogPostPreview
 	title={frontmatter.title}
 	tags={frontmatter.tags}
-	publishDate={frontmatter.publishDate}
+	pubDate={frontmatter.pubDate}
 	url={url as string}
 />
 ))}
 </MainLayout>
+
+<style>
+	h3.description {
+		margin-bottom: 2.5rem;
+	}
+</style>

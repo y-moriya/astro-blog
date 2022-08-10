@@ -9,7 +9,7 @@ export interface Props {
 	content: {
 		title: string;
 		description: string;
-		publishDate: string;
+		pubDate: string;
 		tags: string[];
 		heroImage?: {
 			src: string;
@@ -19,11 +19,11 @@ export interface Props {
 }
 
 const {
-	content: { title, description, publishDate, tags, heroImage },
+	content: { title, description, pubDate, tags, heroImage },
 } = Astro.props as Props;
 
 const allPosts = await Astro.glob('../pages/posts/*.md');
-const i = allPosts.findIndex((p) => p.frontmatter.publishDate === publishDate);
+const i = allPosts.findIndex((p) => p.frontmatter.pubDate === pubDate);
 const prev = i === 0 ? null : allPosts.at(i-1);
 const next = i === allPosts.length - 1 ? null : allPosts.at(i+1);
 ---
@@ -48,7 +48,7 @@ const next = i === allPosts.length - 1 ? null : allPosts.at(i+1);
 				)}
 				<h1 class="title">{title}</h1>
 				<div class="flex">
-					<time>{dayjs(publishDate).format('YYYY-MM-DD')}</time>
+					<time>{dayjs(pubDate).format('YYYY-MM-DD')}</time>
 					<TagsInline tags={tags} />
 				</div>
 			</header>

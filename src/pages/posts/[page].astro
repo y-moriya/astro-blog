@@ -7,7 +7,7 @@ export async function getStaticPaths({ paginate }: any) {
 
   const PAGE_SIZE = 10;
   const allPosts = await Astro.glob('./*.md');
-  const allSortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).getTime() - new Date(a.frontmatter.publishDate).getTime());
+  const allSortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime());
 
     return paginate(allSortedPosts, {
       pageSize: PAGE_SIZE
@@ -22,7 +22,7 @@ const title = `Blog page ${page.currentPage} of ${page.lastPage} | Stoicism`;
   <BlogPostPreview
     title={frontmatter.title}
     tags={frontmatter.tags}
-    publishDate={frontmatter.publishDate}
+    pubDate={frontmatter.pubDate}
     url={url as string}
   />
   ))}
