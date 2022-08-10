@@ -15,14 +15,20 @@ const pages = {
 	tags: {
 		url: '/tags',
 		title: 'Tags'
-	},
-	contact: {
-		url: '/contact',
-		title: 'Contact'
+	}, 
+	archives: {
+		url: '/archives',
+		title: 'Archives'
 	}
 };
 
-const requestPathname = Astro.request.url;
+const requestPathname = new URL(Astro.request.url).pathname;
+const active = (entryUrl: string): string => {
+	if (requestPathname.match(/\/posts\/\d+/) && entryUrl === '/posts/1') {
+		return 'active';
+	}
+	return (requestPathname === entryUrl && 'active') as string;
+}
 ---
 
 <header role="banner" class="wrapper flex-container">
@@ -32,10 +38,9 @@ const requestPathname = Astro.request.url;
 	<nav class="site-navigation" aria-label="Primary">
 			<ul class="nav-list">
 					{Object.values(pages).map(entry => {
-							const className = requestPathname === entry.url && 'active';
 							return (
 									<li>
-											<a class={className as string} href={entry.url}>{entry.title}</a>
+											<a class={active(entry.url)} href={entry.url}>{entry.title}</a>
 									</li>
 							)
 					})}

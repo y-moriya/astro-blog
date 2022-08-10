@@ -12,12 +12,8 @@ const date = dayjs(publishDate);
 ---
 
 <article class="post-preview">
-	<header>
-		<time>{date.format('YYYY-MM-DD')}</time>
-		<a href={url}><h1 class="title">{title}</h1></a>
-	</header>
-	<p>{description}</p>
-	<a href={url}>Read more</a>
+	<time>{date.format('YYYY-MM-DD')}</time>
+	<a href={url}><h1 class="title">{title}</h1></a>
 </article>
 
 <style>

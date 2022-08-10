@@ -1,0 +1,42 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import BlogPostSimple from '../../components/BlogPostSimple.astro';
+import dayjs from 'dayjs';
+
+export async function getStaticPaths({ }) {
+  const allPosts = await Astro.glob('../posts/*.md');
+  const allMonths = new Set();
+  allPosts.map(post => {
+      post.frontmatter.publishDate && allMonths.add(dayjs(post.frontmatter.publishDate).format('YYYY-MM'));
+  });
+
+  return Array.from(allMonths).map((month) => {
+    const filteredPosts = allPosts.filter((post) => dayjs(post.frontmatter.publishDate).format('YYYY-MM') === month);
+    return {
+      params: { month },
+      props: {
+          page: filteredPosts
+      }
+    };
+  });
+}
+
+const { page } = Astro.props
+const { month } = Astro.params
+let title = `Posts by Month: ${month}`
+let description = `all of the articles we've posted and linked so far under the month: "${month}"`
+
+---
+<MainLayout 
+  title={title} description={description}>
+    <h1 class="font-size-3">{title}</h1>
+    {page.sort((a: any, b: any) => {
+      return new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf();
+    }).map(({ url, frontmatter }: any) => (
+    <BlogPostSimple
+      title={frontmatter.title}
+      publishDate={frontmatter.publishDate}
+      url={url as string}
+    />
+    ))}
+</MainLayout>

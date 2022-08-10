@@ -14,7 +14,7 @@ const allPosts = unsortedPosts.sort(function (a, b) {
 const recentPosts = allPosts.slice(0,3);
 ---
 
-<MainLayout>
+<MainLayout title="Top | Stoicism" description="なんかしらの日記のようなものを綴るブログ">
 {recentPosts.map(({ url, frontmatter }) => (
 <BlogPostPreview
 	title={frontmatter.title}
