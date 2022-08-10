@@ -15,11 +15,11 @@ export function getStaticPaths() {
 
 export async function get({ slug }: any) {
   const {
-    frontmatter: { title },
+    frontmatter: { title, og_title },
   } = await import(`../posts/${slug}.md`);
 
   return {
-    body: drawOGImage(title),
+    body: drawOGImage(title, og_title),
   };
 }
 
@@ -28,10 +28,9 @@ const CANVAS_HEIGHT = 630;
 const FONT_SIZE = 60;
 const SPACING = 1.5;
 const FONT_HEIGHT = FONT_SIZE * SPACING;
-const BLOG_NAME = "Stoicism";
+const BLOG_NAME = `Stoicism`;
 
-function drawOGImage(title: string): Buffer {
-  // only static build
+function drawOGImage(title: string, og_title: string): Buffer {
   registerFont("src/lib/NotoSansCJKjp-Regular.ttf", {
     family: "Noto Sans Japanese",
   });
@@ -40,8 +39,13 @@ function drawOGImage(title: string): Buffer {
   const ctx = canvas.getContext("2d");
 
   fill(ctx);
-  drawTitle(ctx, title);
-  drawName(ctx);
+  if (!og_title) {
+    drawTitle(ctx, title);
+    drawName(ctx, BLOG_NAME);
+  } else {
+    drawTitle(ctx, og_title);
+    drawName(ctx, title + BLOG_NAME);
+  }
 
   return canvas.toBuffer("image/jpeg", { quality: 0.8 });
 }
@@ -87,9 +91,9 @@ function wrapText(
   );
 }
 
-function drawName(ctx: CanvasRenderingContext2D) {
+function drawName(ctx: CanvasRenderingContext2D, title: string) {
   ctx.font = `40px Noto Sans Japanese`;
   ctx.textBaseline = "bottom";
-  const { width } = ctx.measureText(BLOG_NAME);
-  ctx.fillText(BLOG_NAME, CANVAS_WIDTH - 80 - width, CANVAS_HEIGHT - 80);
+  const { width } = ctx.measureText(title);
+  ctx.fillText(title, CANVAS_WIDTH - 80 - width, CANVAS_HEIGHT - 80);
 }

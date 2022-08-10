@@ -1,19 +1,23 @@
 ---
 import dayjs from 'dayjs';
+import TagsInline from './TagsInline.astro';
 export interface Props {
 	title: string;
-	description: string;
+	tags: string[];
 	publishDate: string;
 	url: string;
 }
 
-const { title, description, publishDate, url } = Astro.props as Props;
+const { title, tags, publishDate, url } = Astro.props as Props;
 const date = dayjs(publishDate);
 ---
 
 <article class="post-preview">
-	<time>{date.format('YYYY-MM-DD')}</time>
-	<a href={url}><h1 class="title">{title}</h1></a>
+	<div class="flex">
+		<time>{date.format('YYYY-MM-DD')}</time>
+		<TagsInline tags={tags} />
+		<a href={url}><h1 class="title">{title}</h1></a>
+	</div>
 </article>
 
 <style>

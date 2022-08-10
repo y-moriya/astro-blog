@@ -1,0 +1,23 @@
+---
+export interface Props {
+	tags: string[];
+}
+const {
+	tags
+} = Astro.props as Props;
+---
+<ul class="tag-list">
+  {tags.map((tag) => (
+     <li><a class="govuk-tag--blue" href={`/tags/${tag}`} title={`View posts tagged under "${tag}"`}>#{tag}</a></li>
+ ))}
+ </ul>
+ 
+ <style>
+  
+  .tag-list {
+      display: flex;
+      list-style-type: none;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+ </style>

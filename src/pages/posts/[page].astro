@@ -5,7 +5,7 @@ import MainLayout from "../../layouts/MainLayout.astro";
 
 export async function getStaticPaths({ paginate }: any) {
 
-  const PAGE_SIZE = 2;
+  const PAGE_SIZE = 10;
   const allPosts = await Astro.glob('./*.md');
   const allSortedPosts = allPosts.sort((a, b) => new Date(b.frontmatter.publishDate).getTime() - new Date(a.frontmatter.publishDate).getTime());
 
@@ -21,7 +21,7 @@ const title = `Blog page ${page.currentPage} of ${page.lastPage} | Stoicism`;
   {page.data.map(({ url, frontmatter }: any) => (
   <BlogPostPreview
     title={frontmatter.title}
-    description={frontmatter.description}
+    tags={frontmatter.tags}
     publishDate={frontmatter.publishDate}
     url={url as string}
   />

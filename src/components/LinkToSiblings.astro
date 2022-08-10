@@ -1,0 +1,21 @@
+---
+const { prev, next } = Astro.props;
+---
+<div class="page-actions">
+  {next && <a class="font-size-1" href={next.url} title="Go to Next">&larr; {next.frontmatter.title}</a>}
+  {prev && <a class="font-size-1" href={prev.url} title="Go to Previous">{prev.frontmatter.title}&rarr;</a>}
+</div>
+<style>
+    .page-actions {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        padding-top: 1.5rem;
+        padding-bottom: 1.5rem;
+    }
+    /* .action-gotox {
+        font-size: 1.3rem;
+        line-height: 1.3rem;
+        font-weight: bold;
+    } */
+</style>

@@ -1,24 +1,25 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
 import BlogPostPreview from '../components/BlogPostPreview.astro';
 import MainLayout from '../layouts/MainLayout.astro';
 
 // Use Astro.glob to fetch all post with associated frontmatter
 const unsortedPosts = await Astro.glob('./posts/*.md');
-const allPosts = unsortedPosts.sort(function (a, b) {
+const pinnedPosts = unsortedPosts.filter((p) => {
+	return p.frontmatter.pinned;
+}).sort(function (a, b) {
 	return (
 		new Date(b.frontmatter.publishDate).valueOf() - new Date(a.frontmatter.publishDate).valueOf()
 	);
 });
-const recentPosts = allPosts.slice(0,3);
 ---
 
 <MainLayout title="Top | Stoicism" description="なんかしらの日記のようなものを綴るブログ">
-{recentPosts.map(({ url, frontmatter }) => (
+	<h2>固定されている記事</h2>
+	<hr>
+{pinnedPosts.map(({ url, frontmatter }: any) => (
 <BlogPostPreview
 	title={frontmatter.title}
-	description={frontmatter.description}
+	tags={frontmatter.tags}
 	publishDate={frontmatter.publishDate}
 	url={url as string}
 />

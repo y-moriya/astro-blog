@@ -2,12 +2,15 @@
 import BaseHead from "../components/BaseHead.astro";
 import Header from "../components/Header.astro";
 import dayjs from "dayjs";
+import TagsInline from "@/components/TagsInline.astro";
+import LinkToSiblings from "@/components/LinkToSiblings.astro";
 
 export interface Props {
 	content: {
 		title: string;
 		description: string;
 		publishDate: string;
+		tags: string[];
 		heroImage?: {
 			src: string;
 			alt: string;
@@ -16,8 +19,13 @@ export interface Props {
 }
 
 const {
-	content: { title, description, publishDate, heroImage },
+	content: { title, description, publishDate, tags, heroImage },
 } = Astro.props as Props;
+
+const allPosts = await Astro.glob('../pages/posts/*.md');
+const i = allPosts.findIndex((p) => p.frontmatter.publishDate === publishDate);
+const prev = i === 0 ? null : allPosts.at(i-1);
+const next = i === allPosts.length - 1 ? null : allPosts.at(i+1);
 ---
 
 <html>
@@ -39,12 +47,16 @@ const {
 					/>
 				)}
 				<h1 class="title">{title}</h1>
-				<time>{dayjs(publishDate).format('YYYY-MM-DD')}</time>
+				<div class="flex">
+					<time>{dayjs(publishDate).format('YYYY-MM-DD')}</time>
+					<TagsInline tags={tags} />
+				</div>
 			</header>
 			<main>
 				<slot></slot>
 			</main>
 		</article>
+		<LinkToSiblings prev={prev} next={next} />
 	</body>
 </html>
 
@@ -100,4 +112,8 @@ const {
 		font-size: 2.25rem;
 		font-weight: 700;
 	}
+		.flex{
+      display: flex;
+      flex-wrap: wrap;
+    }
 </style>
