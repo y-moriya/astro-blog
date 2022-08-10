@@ -7,7 +7,8 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "format": "prettier -w ."
   },
   "devDependencies": {
     "@astrojs/preact": "^1.0.0",
@@ -19,6 +20,8 @@
     "canvas": "^2.9.3",
     "dayjs": "^1.11.4",
     "node-path": "^0.0.3",
-    "preact": "^10.7.3"
+    "preact": "^10.7.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-astro": "^0.5.0"
   }
 }

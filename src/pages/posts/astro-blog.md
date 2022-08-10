@@ -3,7 +3,7 @@ layout: "../../layouts/BlogPost.astro"
 title: ブログを移行しました
 publishDate: 2022-08-11T20:00:00+09:00
 tags: ["雑記", "Astro"]
-og_title: 
+og_title:
 pinned: true
 ---
 
