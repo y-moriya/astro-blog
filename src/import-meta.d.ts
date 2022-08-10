@@ -13,5 +13,6 @@ interface ImportMeta {
 
   env: {
     SSR: boolean;
+    SITE: string;
   };
 }

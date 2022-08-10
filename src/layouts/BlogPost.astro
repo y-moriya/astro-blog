@@ -22,6 +22,11 @@ const {
 	content: { title, description, pubDate, tags, heroImage },
 } = Astro.props as Props;
 
+const defaultOgImage = Astro.url.pathname.replace(
+  /^\/posts\/(.+)$/,
+  `${Astro.url.origin}/og-image/$1.jpg`
+);
+
 const allPosts = await Astro.glob('../pages/posts/*.md');
 const i = allPosts.findIndex((p) => p.frontmatter.pubDate === pubDate);
 const prev = i === 0 ? null : allPosts.at(i-1);
@@ -30,7 +35,7 @@ const next = i === allPosts.length - 1 ? null : allPosts.at(i+1);
 
 <html>
 	<head>
-		<BaseHead title={title} description={description} />
+		<BaseHead title={title} description={description} og_image={defaultOgImage} />
 	</head>
 
 	<body>
