@@ -1,14 +1,23 @@
 ---
 export interface Props {
-	tags: string[];
+  tags: string[];
 }
-const {
-	tags
-} = Astro.props as Props;
+const { tags } = Astro.props as Props;
 ---
-{tags.map((tag) => (
-    <span><a class="govuk-tag--blue" href={`/tags/${tag}`} title={`View posts tagged under "${tag}"`}>#{tag}</a></span>
-))}
+
+{
+  tags.map((tag) => (
+    <span>
+      <a
+        class="govuk-tag--blue"
+        href={`/tags/${tag}`}
+        title={`View posts tagged under "${tag}"`}
+      >
+        #{tag}
+      </a>
+    </span>
+  ))
+}
 
 <style>
   span {

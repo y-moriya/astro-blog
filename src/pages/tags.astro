@@ -1,15 +1,23 @@
 ---
 // Layout Import
-import MainLayout from '../layouts/MainLayout.astro';
-import Tags from '../components/Tags.astro';
+import MainLayout from "../layouts/MainLayout.astro";
+import Tags from "../components/Tags.astro";
 
-let title = 'All tags'
-let description = 'All the tags used so far...'
+let title = "All tags";
+let description = "All the tags used so far...";
 // Data Fetching: List all Markdown posts in the repo.
-const allPosts = await Astro.glob('./posts/*.md');
-const tags = [...new Set([].concat.apply([], allPosts.map(post => post.frontmatter.tags)))]
+const allPosts = await Astro.glob("./posts/*.md");
+const tags = [
+  ...new Set(
+    [].concat.apply(
+      [],
+      allPosts.map((post) => post.frontmatter.tags)
+    )
+  ),
+];
 ---
-<MainLayout title={ title } description={ description }>
-    <h1 class="font-size-3">All Tags</h1>
-    <Tags tags={tags} />
+
+<MainLayout title={title} description={description}>
+  <h1 class="font-size-3">All Tags</h1>
+  <Tags tags={tags} />
 </MainLayout>

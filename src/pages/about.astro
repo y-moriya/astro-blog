@@ -1,6 +1,6 @@
 ---
 // Layout Import
-import MainLayout from '../layouts/MainLayout.astro'
+import MainLayout from "../layouts/MainLayout.astro";
 // Component Imports
 // import PostList from '../components/PostList.astro'
 
@@ -11,35 +11,40 @@ allPosts = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date)
 const recentPosts = allPosts.slice(0, 3)
 */
 ---
+
 <MainLayout title="About" description={`Hey! This is the About page.`}>
-        <h1 class="font-size-3 title-spacing">About</h1>
-        <section>
-            <h2 class="font-size-2">このサイトについて</h2>
-            <div class="bio">
-                <p>
-                    ほぼほぼ阪神タイガースの試合観戦記（テレビ）を書いてます。
-                </p>
-            </div>
-        </section>
-        <section>
-            <h2 class="font-size-2">情報</h2>
-            <ul class="list-extra-spaced">
-                <li>
-                    <h3 class="font-size-1">技術スタック</h3>
-                    <div class="meta-information">
-                        <p>このサイトは Astro を使って Cloudflare Pages にデプロイされています。</p>
-                        <p>以前は Gatzby & Vercel でした。</p>
-                        <p>ソースコードは https://github.com/y-moriya/astro-blog で公開されています。</p>
-                    </div>
-                </li>
-            </ul>
-            <ul class="list-extra-spaced">
-                <li>
-                    <h3 class="font-size-1">著者</h3>
-                    <div class="meta-information">
-                        <a href="https://twitter.com/euro_s">@euro_s</a>
-                    </div>
-                </li>
-            </ul>
-        </section>
+  <h1 class="font-size-3 title-spacing">About</h1>
+  <section>
+    <h2 class="font-size-2">このサイトについて</h2>
+    <div class="bio">
+      <p>ほぼほぼ阪神タイガースの試合観戦記（テレビ）を書いてます。</p>
+    </div>
+  </section>
+  <section>
+    <h2 class="font-size-2">情報</h2>
+    <ul class="list-extra-spaced">
+      <li>
+        <h3 class="font-size-1">技術スタック</h3>
+        <div class="meta-information">
+          <p>
+            このサイトは Astro を使って Cloudflare Pages
+            にデプロイされています。
+          </p>
+          <p>以前は Gatzby & Vercel でした。</p>
+          <p>
+            ソースコードは https://github.com/y-moriya/astro-blog
+            で公開されています。
+          </p>
+        </div>
+      </li>
+    </ul>
+    <ul class="list-extra-spaced">
+      <li>
+        <h3 class="font-size-1">著者</h3>
+        <div class="meta-information">
+          <a href="https://twitter.com/euro_s">@euro_s</a>
+        </div>
+      </li>
+    </ul>
+  </section>
 </MainLayout>

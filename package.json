@@ -8,7 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "astro": "astro",
-    "format": "prettier -w ."
+    "format": "prettier -w --plugin-search-dir=. ."
   },
   "devDependencies": {
     "@astrojs/preact": "^1.0.0",

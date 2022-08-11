@@ -1,43 +1,43 @@
 ---
-import Footer from '../components/Footer.astro';
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro'
+import Footer from "../components/Footer.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Header from "../components/Header.astro";
 
 let { title, description, head } = Astro.props;
 ---
+
 <html lang="ja">
-	<head>
+  <head>
     {head}
-		<BaseHead title={title} description={description} />
-	</head>
+    <BaseHead title={title} description={description} />
+  </head>
 
-	<body>
-		<Header />
-		<div class="wrapper">
-			<main class="content">
-				<section id="main-content">
+  <body>
+    <Header />
+    <div class="wrapper">
+      <main class="content">
+        <section id="main-content">
           <slot />
-				</section>
-			</main>
-		</div>
-		<Footer />
-	</body>
+        </section>
+      </main>
+    </div>
+    <Footer />
+    <style>
+      .content {
+        /* margin-top: 4rem; */
+        margin-bottom: 8rem;
+      }
+
+      .intro {
+        padding-bottom: 4rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid var(--theme-divider);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    </style>
+  </body>
 </html>
-
-<style>
-	.content {
-		/* margin-top: 4rem; */
-		margin-bottom: 8rem;
-	}
-
-	.intro {
-		padding-bottom: 4rem;
-		margin-bottom: 2rem;
-		border-bottom: 4px solid var(--theme-divider);
-	}
-
-	h1 {
-		font-size: 2.5rem;
-		font-weight: 700;
-	}
-</style>

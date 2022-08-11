@@ -1,31 +1,40 @@
 ---
 export interface Props {
-	tags: string[];
+  tags: string[];
 }
-const {
-	tags
-} = Astro.props as Props;
+const { tags } = Astro.props as Props;
 
-const allPosts = await Astro.glob('../pages/posts/*.md');
+const allPosts = await Astro.glob("../pages/posts/*.md");
 const tagsWithSize = tags.map((t) => {
-  return { tag: t, size: 
-    allPosts.filter((p) => (p.frontmatter.tags as string[]).includes(t)).length
+  return {
+    tag: t,
+    size: allPosts.filter((p) => (p.frontmatter.tags as string[]).includes(t))
+      .length,
   };
 });
-
 ---
+
 <ul class="tag-list">
-  {tagsWithSize.map((tag) => (
-     <li><a class="govuk-tag--blue" href={`/tags/${tag.tag}`} title={`View posts tagged under "${tag.tag}"`}>#{tag.tag + `(${tag.size})`}</a></li>
- ))}
- </ul>
- 
- <style>
-  
+  {
+    tagsWithSize.map((tag) => (
+      <li>
+        <a
+          class="govuk-tag--blue"
+          href={`/tags/${tag.tag}`}
+          title={`View posts tagged under "${tag.tag}"`}
+        >
+          #{tag.tag + `(${tag.size})`}
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
   .tag-list {
-      display: flex;
-      list-style-type: none;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
- </style>
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>

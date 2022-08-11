@@ -1,26 +1,48 @@
 ---
 // Layout Import
-import MainLayout from '../layouts/MainLayout.astro';
-import dayjs from 'dayjs';
+import MainLayout from "../layouts/MainLayout.astro";
+import dayjs from "dayjs";
 
-let title = 'Archives'
-let description = '月別アーカイブ'
+let title = "Archives";
+let description = "月別アーカイブ";
 // Data Fetching: List all Markdown posts in the repo.
-const allPosts = await Astro.glob('./posts/*.md');
-const months = [...new Set(allPosts.sort((a: any, b: any) => {
-  return new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-}).map(post => dayjs(post.frontmatter.pubDate).format('YYYY-MM')))];
+const allPosts = await Astro.glob("./posts/*.md");
+const months = [
+  ...new Set(
+    allPosts
+      .sort((a: any, b: any) => {
+        return (
+          new Date(b.frontmatter.pubDate).valueOf() -
+          new Date(a.frontmatter.pubDate).valueOf()
+        );
+      })
+      .map((post) => dayjs(post.frontmatter.pubDate).format("YYYY-MM"))
+  ),
+];
 const archives = months.map((m) => {
-  return { month: m, size: 
-    allPosts.filter((p) => dayjs(p.frontmatter.pubDate).format('YYYY-MM') === m).length
+  return {
+    month: m,
+    size: allPosts.filter(
+      (p) => dayjs(p.frontmatter.pubDate).format("YYYY-MM") === m
+    ).length,
   };
 });
 ---
-<MainLayout title={ title } description={ description }>
-    <h1 class="font-size-3">Archives</h1>
-    <ul>
-     {archives.map((archive) => (
-        <li class="post-preview"><a href={`/archives/${archive.month}`} title={dayjs(archive.month).format('YYYY年MM月')}>{dayjs(archive.month).format('YYYY年MM月') + `(${archive.size})`}</a></li>
-    ))}
-    </ul>
+
+<MainLayout title={title} description={description}>
+  <h1 class="font-size-3">Archives</h1>
+  <ul>
+    {
+      archives.map((archive) => (
+        <li class="post-preview">
+          <a
+            href={`/archives/${archive.month}`}
+            title={dayjs(archive.month).format("YYYY年MM月")}
+          >
+            {dayjs(archive.month).format("YYYY年MM月") + `(${archive.size})`}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </MainLayout>

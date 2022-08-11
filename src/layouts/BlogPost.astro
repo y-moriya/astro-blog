@@ -6,20 +6,20 @@ import TagsInline from "@/components/TagsInline.astro";
 import LinkToSiblings from "@/components/LinkToSiblings.astro";
 
 export interface Props {
-	content: {
-		title: string;
-		description: string;
-		pubDate: string;
-		tags: string[];
-		heroImage?: {
-			src: string;
-			alt: string;
-		};
-	};
+  content: {
+    title: string;
+    description: string;
+    pubDate: string;
+    tags: string[];
+    heroImage?: {
+      src: string;
+      alt: string;
+    };
+  };
 }
 
 const {
-	content: { title, description, pubDate, tags, heroImage },
+  content: { title, description, pubDate, tags, heroImage },
 } = Astro.props as Props;
 
 const defaultOgImage = Astro.url.pathname.replace(
@@ -27,101 +27,106 @@ const defaultOgImage = Astro.url.pathname.replace(
   `${Astro.url.origin}/og-image/$1.jpg`
 );
 
-const allPosts = await Astro.glob('../pages/posts/*.md');
+const allPosts = await Astro.glob("../pages/posts/*.md");
 const sortedPosts = allPosts.sort((a, b) => {
-	return new Date(a.frontmatter.pubDate).valueOf() - new Date(b.frontmatter.pubDate).valueOf();
-})
+  return (
+    new Date(a.frontmatter.pubDate).valueOf() -
+    new Date(b.frontmatter.pubDate).valueOf()
+  );
+});
 const i = sortedPosts.findIndex((p) => p.frontmatter.pubDate === pubDate);
-const prev = i === 0 ? null : sortedPosts.at(i-1);
-const next = i === sortedPosts.length - 1 ? null : sortedPosts.at(i+1);
+const prev = i === 0 ? null : sortedPosts.at(i - 1);
+const next = i === sortedPosts.length - 1 ? null : sortedPosts.at(i + 1);
 ---
 
 <html>
-	<head>
-		<BaseHead title={title} description={description} og_image={defaultOgImage} />
-	</head>
+  <head>
+    <BaseHead title={title} description={description} og_image={defaultOgImage}
+    />
+  </head>
 
-	<body>
-		<Header />
-		<article class="wrapper content">
-			<header>
-				{heroImage && (
-					<img
-						width="720"
-						height="420"
-						loading="lazy"
-						src={heroImage.src}
-						alt={heroImage.alt}
-					/>
-				)}
-				<h1 class="title">{title}</h1>
-				<div class="flex">
-					<time>{dayjs(pubDate).format('YYYY-MM-DD')}</time>
-					<TagsInline tags={tags} />
-				</div>
-			</header>
-			<main>
-				<slot></slot>
-			</main>
-		</article>
-		<LinkToSiblings prev={prev} next={next} />
-	</body>
+  <body>
+    <Header />
+    <article class="wrapper content">
+      <header>
+        {
+          heroImage && (
+            <img
+              width="720"
+              height="420"
+              loading="lazy"
+              src={heroImage.src}
+              alt={heroImage.alt}
+            />
+          )
+        }
+        <h1 class="title">{title}</h1>
+        <div class="flex">
+          <time>{dayjs(pubDate).format("YYYY-MM-DD")}</time>
+          <TagsInline tags={tags} />
+        </div>
+      </header>
+      <main>
+        <slot />
+      </main>
+    </article>
+    <LinkToSiblings prev={prev} next={next} />
+    <style>
+      img {
+        width: 100vw;
+        object-fit: cover;
+        object-position: center;
+        margin-top: 2rem;
+        margin-bottom: 4rem;
+        max-width: 1280px;
+      }
+
+      @media (max-width: 50em) {
+        img {
+          height: 260px;
+          margin-top: 0;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .content {
+        margin-bottom: 8rem;
+      }
+
+      .content :global(h2) {
+        margin-top: 4rem;
+      }
+
+      header {
+        display: flex;
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+
+        padding-bottom: 2rem;
+        margin-bottom: 2rem;
+        border-bottom: 4px solid var(--theme-divider);
+      }
+
+      .title,
+      time {
+        margin: 0;
+      }
+
+      time {
+        color: var(--theme-text-lighter);
+      }
+
+      .title {
+        font-size: 2.25rem;
+        font-weight: 700;
+      }
+      .flex {
+        display: flex;
+        flex-wrap: wrap;
+      }
+    </style>
+  </body>
 </html>
-
-<style>
-	img {
-		width: 100vw;
-		object-fit: cover;
-		object-position: center;
-		margin-top: 2rem;
-		margin-bottom: 4rem;
-		max-width: 1280px;
-	}
-
-	@media (max-width: 50em) {
-		img {
-			height: 260px;
-			margin-top: 0;
-			margin-bottom: 2rem;
-		}
-	}
-
-	.content {
-		margin-bottom: 8rem;
-	}
-
-	.content :global(h2) {
-		margin-top: 4rem;
-	}
-
-	header {
-		display: flex;
-		flex-direction: column;
-		text-align: center;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
-
-		padding-bottom: 2rem;
-		margin-bottom: 2rem;
-		border-bottom: 4px solid var(--theme-divider);
-	}
-
-	.title,
-	time {
-		margin: 0;
-	}
-
-	time {
-		color: var(--theme-text-lighter);
-	}
-
-	.title {
-		font-size: 2.25rem;
-		font-weight: 700;
-	}
-		.flex{
-      display: flex;
-      flex-wrap: wrap;
-    }
-</style>

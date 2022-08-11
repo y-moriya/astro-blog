@@ -1,69 +1,72 @@
 ---
 const pages = {
-	home: {
-		url: '/',
-		title: 'Home'
-	},
-	about: {
-		url: '/about',
-		title: 'About'
-	},
-	blog: {
-		url: '/posts/1',
-		title: 'Blog'
-	},
-	tags: {
-		url: '/tags',
-		title: 'Tags'
-	}, 
-	archives: {
-		url: '/archives',
-		title: 'Archives'
-	}
+  home: {
+    url: "/",
+    title: "Home",
+  },
+  about: {
+    url: "/about",
+    title: "About",
+  },
+  blog: {
+    url: "/posts/1",
+    title: "Blog",
+  },
+  tags: {
+    url: "/tags",
+    title: "Tags",
+  },
+  archives: {
+    url: "/archives",
+    title: "Archives",
+  },
 };
 
 const requestPathname = new URL(Astro.request.url).pathname;
 const active = (entryUrl: string): string => {
-	if (requestPathname.match(/\/posts\/\d+/) && entryUrl === '/posts/1') {
-		return 'active';
-	}
-	if (requestPathname.match(/\/tags\/.+/) && entryUrl === '/tags') {
-		return 'active';
-	}
-	if (requestPathname.match(/\/archives\/.+/) && entryUrl === '/archives') {
-		return 'active';
-	}
-	return (requestPathname === entryUrl && 'active') as string;
-}
+  if (requestPathname.match(/\/posts\/\d+/) && entryUrl === "/posts/1") {
+    return "active";
+  }
+  if (requestPathname.match(/\/tags\/.+/) && entryUrl === "/tags") {
+    return "active";
+  }
+  if (requestPathname.match(/\/archives\/.+/) && entryUrl === "/archives") {
+    return "active";
+  }
+  return (requestPathname === entryUrl && "active") as string;
+};
 ---
 
 <header role="banner" class="wrapper flex-container">
-	<a href="/">
-		<h1>Stoicism</h1>
-	</a>
-	<nav class="site-navigation" aria-label="Primary">
-			<ul class="nav-list">
-					{Object.values(pages).map(entry => {
-							return (
-									<li>
-											<a class={active(entry.url)} href={entry.url}>{entry.title}</a>
-									</li>
-							)
-					})}
-			</ul>
-	</nav>
+  <a href="/">
+    <h1>Stoicism</h1>
+  </a>
+  <nav class="site-navigation" aria-label="Primary">
+    <ul class="nav-list">
+      {
+        Object.values(pages).map((entry) => {
+          return (
+            <li>
+              <a class={active(entry.url)} href={entry.url}>
+                {entry.title}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </nav>
 </header>
 
 <style>
+  a {
+    border-bottom: 2px solid transparent;
+  }
 
-	a {
-		border-bottom: 2px solid transparent;
-	}
-	
-	a.active {
-		border-bottom-color: var(--color-active);
-			color: var(--color-active);
-			text-underline-offset: var(--nav-underline-offset);
-			text-decoration-thickness: 20%;
-	}
-	</style>
+  a.active {
+    border-bottom-color: var(--color-active);
+    color: var(--color-active);
+    text-underline-offset: var(--nav-underline-offset);
+    text-decoration-thickness: 20%;
+  }
+</style>

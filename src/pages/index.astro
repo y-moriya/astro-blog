@@ -1,34 +1,39 @@
 ---
-import BlogPostPreview from '../components/BlogPostPreview.astro';
-import MainLayout from '../layouts/MainLayout.astro';
+import BlogPostPreview from "../components/BlogPostPreview.astro";
+import MainLayout from "../layouts/MainLayout.astro";
 
 // Use Astro.glob to fetch all post with associated frontmatter
-const unsortedPosts = await Astro.glob('./posts/*.md');
-const pinnedPosts = unsortedPosts.filter((p) => {
-	return p.frontmatter.pinned;
-}).sort(function (a, b) {
-	return (
-		new Date(b.frontmatter.pubDate).valueOf() - new Date(a.frontmatter.pubDate).valueOf()
-	);
-});
+const unsortedPosts = await Astro.glob("./posts/*.md");
+const pinnedPosts = unsortedPosts
+  .filter((p) => {
+    return p.frontmatter.pinned;
+  })
+  .sort(function (a, b) {
+    return (
+      new Date(b.frontmatter.pubDate).valueOf() -
+      new Date(a.frontmatter.pubDate).valueOf()
+    );
+  });
 ---
 
 <MainLayout title="Top" description="なんかしらの日記のようなものを綴るブログ">
-	<h2 class="description">なんかしらの日記のようなものを綴るブログ</h2>
-	<h2>固定されている記事</h2>
-	<hr>
-{pinnedPosts.map(({ url, frontmatter }: any) => (
-<BlogPostPreview
-	title={frontmatter.title}
-	tags={frontmatter.tags}
-	pubDate={frontmatter.pubDate}
-	url={url as string}
-/>
-))}
+  <h2 class="description">なんかしらの日記のようなものを綴るブログ</h2>
+  <h2>固定されている記事</h2>
+  <hr />
+  {
+    pinnedPosts.map(({ url, frontmatter }: any) => (
+      <BlogPostPreview
+        title={frontmatter.title}
+        tags={frontmatter.tags}
+        pubDate={frontmatter.pubDate}
+        url={url as string}
+      />
+    ));
+  }
 </MainLayout>
 
 <style>
-	h2.description {
-		margin-bottom: 2.5rem;
-	}
+  h2.description {
+    margin-bottom: 2.5rem;
+  }
 </style>
