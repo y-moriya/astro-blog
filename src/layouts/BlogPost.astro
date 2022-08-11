@@ -28,9 +28,12 @@ const defaultOgImage = Astro.url.pathname.replace(
 );
 
 const allPosts = await Astro.glob('../pages/posts/*.md');
-const i = allPosts.findIndex((p) => p.frontmatter.pubDate === pubDate);
-const prev = i === 0 ? null : allPosts.at(i-1);
-const next = i === allPosts.length - 1 ? null : allPosts.at(i+1);
+const sortedPosts = allPosts.sort((a, b) => {
+	return new Date(a.frontmatter.pubDate).valueOf() - new Date(b.frontmatter.pubDate).valueOf();
+})
+const i = sortedPosts.findIndex((p) => p.frontmatter.pubDate === pubDate);
+const prev = i === 0 ? null : sortedPosts.at(i-1);
+const next = i === sortedPosts.length - 1 ? null : sortedPosts.at(i+1);
 ---
 
 <html>
