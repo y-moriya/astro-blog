@@ -55,7 +55,7 @@ h2 = %Q(## #{home} #{home_score} - #{away_score} #{away})
 file = "src/pages/posts/" + datestr + "_" + teams[home] + teams[away] + ".md"
 unless File.exists?(file)
   f = File.open(file, "w+")
-  f.puts("---\ntitle: #{title}\npubDate: #{now.to_s}\ntags: [\"野球\"]\nog_title: #{og_title}\n---\n\n#{h2}\n\n#{href}\n\n")
+  f.puts("---\nlayout: \"../../layouts/BlogPost.astro\"\ntitle: #{title}\npubDate: #{now.to_s}\ntags: [\"野球\"]\nog_title: #{og_title}\n---\n\n#{h2}\n\n#{href}\n\n")
   f.close
 
   system("git add #{file}")
