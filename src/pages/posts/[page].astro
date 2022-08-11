@@ -15,7 +15,7 @@ export async function getStaticPaths({ paginate }: any) {
 }
 
 const { page } = Astro.props;
-const title = `Blog page ${page.currentPage} of ${page.lastPage} | Stoicism`;
+const title = `Blog page ${page.currentPage} of ${page.lastPage}`;
 ---
 <MainLayout title={title}>
   {page.data.map(({ url, frontmatter }: any) => (
