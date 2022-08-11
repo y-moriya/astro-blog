@@ -1,14 +1,14 @@
 {
   "version": "2.0.0",
   "tasks": [
-      {
-          "label": "New Content",
-          "type": "shell",
-          "command": "ruby new.rb",
-          "problemMatcher": [],
-          "runOptions": {
-              "runOn": "folderOpen"
-          }
+    {
+      "label": "New Content",
+      "type": "shell",
+      "command": "ruby new.rb",
+      "problemMatcher": [],
+      "runOptions": {
+        "runOn": "folderOpen"
       }
+    }
   ]
 }

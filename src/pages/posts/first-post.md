@@ -1,7 +1,7 @@
 ---
 layout: "../../layouts/BlogPost.astro"
 title: また新たにブログを作った
-pubDate: '2021-03-06T00:00:00Z'
+pubDate: "2021-03-06T00:00:00Z"
 tags: ["雑記", "Gatsby"]
 og_title: ""
 pinned: true
@@ -9,18 +9,18 @@ pinned: true
 
 ## はじめに
 
-ゆーろです。なんとなく、gatsbyで静的サイトでも作ってみようかな……という気になって、適当にググりながらでっち上げた。
-スターターは [gatsby-starter-blog-mdx](https://www.gatsbyjs.com/starters/hagnerd/gatsby-starter-blog-mdx/) というのを使っていて、細かい設定は [Gatsbyでブログを作ってやったことのまとめ](https://takagi.blog/gatsby-starter-blog/) をめっちゃ参考にした。
+ゆーろです。なんとなく、gatsby で静的サイトでも作ってみようかな……という気になって、適当にググりながらでっち上げた。
+スターターは [gatsby-starter-blog-mdx](https://www.gatsbyjs.com/starters/hagnerd/gatsby-starter-blog-mdx/) というのを使っていて、細かい設定は [Gatsby でブログを作ってやったことのまとめ](https://takagi.blog/gatsby-starter-blog/) をめっちゃ参考にした。
 
 ## 何を書くか
 
-あまり頑張らず、日記的に備忘録を残していけたらいいなあ。技術的なことは（あんまり書かないけど）人の目につくZennとかに投稿した方がいいと思うので、ここでは書かない。案としては……
+あまり頑張らず、日記的に備忘録を残していけたらいいなあ。技術的なことは（あんまり書かないけど）人の目につく Zenn とかに投稿した方がいいと思うので、ここでは書かない。案としては……
 
 - ファイアーエムブレムヒーローズ（FEH）
 - 阪神タイガースの中継観戦記
 - その他ゲームのプレイ日記
 
-このへんかな。日記自体はNotionに非公開でつけてるので、重複するとめんどくさいけど。
+このへんかな。日記自体は Notion に非公開でつけてるので、重複するとめんどくさいけど。
 
 ## その他
 
