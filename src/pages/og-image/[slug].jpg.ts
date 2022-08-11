@@ -13,10 +13,10 @@ export function getStaticPaths() {
   }));
 }
 
-export async function get({ slug }: any) {
+export async function get({ params }: any) {
   const {
     frontmatter: { title, og_title },
-  } = await import(`../posts/${slug}.md`);
+  } = await import(`../posts/${params.slug}.md`);
 
   return {
     body: drawOGImage(title, og_title),

@@ -1,24 +1,24 @@
 ---
-import BlogPostPreview from "../../components/BlogPostPreview.astro";
-import Pagination from "../../components/Pagination.astro";
-import MainLayout from "../../layouts/MainLayout.astro";
+import BlogPostPreview from "../../components/BlogPostPreview.astro"
+import Pagination from "../../components/Pagination.astro"
+import MainLayout from "../../layouts/MainLayout.astro"
 
 export async function getStaticPaths({ paginate }: any) {
-  const PAGE_SIZE = 10;
-  const allPosts = await Astro.glob("./*.md");
+  const PAGE_SIZE = 10
+  const allPosts = await Astro.glob("./*.md")
   const allSortedPosts = allPosts.sort(
     (a, b) =>
       new Date(b.frontmatter.pubDate).getTime() -
       new Date(a.frontmatter.pubDate).getTime()
-  );
+  )
 
   return paginate(allSortedPosts, {
     pageSize: PAGE_SIZE,
-  });
+  })
 }
 
-const { page } = Astro.props;
-const title = `Blog page ${page.currentPage} of ${page.lastPage}`;
+const { page } = Astro.props
+const title = `Blog page ${page.currentPage} of ${page.lastPage}`
 ---
 
 <MainLayout title={title}>
@@ -28,7 +28,7 @@ const title = `Blog page ${page.currentPage} of ${page.lastPage}`;
         title={frontmatter.title}
         tags={frontmatter.tags}
         pubDate={frontmatter.pubDate}
-        url={url as string}
+        url={url}
       />
     ))
   }

@@ -1,18 +1,18 @@
 ---
-import "../styles/blog.css";
+import "../styles/blog.css"
 
 export interface Props {
-  title: string;
-  description: string;
-  og_image?: string;
+  title: string
+  description: string
+  og_image?: string
 }
 
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 const {
   title,
   description,
   og_image = `${canonicalURL.origin}/og-image.jpg`,
-} = Astro.props;
+} = Astro.props
 ---
 
 <!-- Global Metadata -->

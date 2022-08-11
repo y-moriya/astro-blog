@@ -20,21 +20,21 @@ const pages = {
     url: "/archives",
     title: "Archives",
   },
-};
+}
 
-const requestPathname = new URL(Astro.request.url).pathname;
-const active = (entryUrl: string): string => {
+const requestPathname = new URL(Astro.request.url).pathname
+const active = (entryUrl: string): false | "active" => {
   if (requestPathname.match(/\/posts\/\d+/) && entryUrl === "/posts/1") {
-    return "active";
+    return "active"
   }
   if (requestPathname.match(/\/tags\/.+/) && entryUrl === "/tags") {
-    return "active";
+    return "active"
   }
   if (requestPathname.match(/\/archives\/.+/) && entryUrl === "/archives") {
-    return "active";
+    return "active"
   }
-  return (requestPathname === entryUrl && "active") as string;
-};
+  return requestPathname === entryUrl && "active"
+}
 ---
 
 <header role="banner" class="wrapper flex-container">
@@ -51,7 +51,7 @@ const active = (entryUrl: string): string => {
                 {entry.title}
               </a>
             </li>
-          );
+          )
         })
       }
     </ul>

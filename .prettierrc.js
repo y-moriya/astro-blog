@@ -5,6 +5,7 @@ module.exports = {
       files: "*.astro",
       options: {
         parser: "astro",
+        semi: false,
       },
     },
   ],

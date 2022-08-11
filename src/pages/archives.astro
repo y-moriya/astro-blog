@@ -1,12 +1,10 @@
 ---
-// Layout Import
-import MainLayout from "../layouts/MainLayout.astro";
-import dayjs from "dayjs";
+import MainLayout from "../layouts/MainLayout.astro"
+import dayjs from "dayjs"
 
-let title = "Archives";
-let description = "月別アーカイブ";
-// Data Fetching: List all Markdown posts in the repo.
-const allPosts = await Astro.glob("./posts/*.md");
+let title = "Archives"
+let description = "月別アーカイブ"
+const allPosts = await Astro.glob("./posts/*.md")
 const months = [
   ...new Set(
     allPosts
@@ -14,19 +12,19 @@ const months = [
         return (
           new Date(b.frontmatter.pubDate).valueOf() -
           new Date(a.frontmatter.pubDate).valueOf()
-        );
+        )
       })
       .map((post) => dayjs(post.frontmatter.pubDate).format("YYYY-MM"))
   ),
-];
+]
 const archives = months.map((m) => {
   return {
     month: m,
     size: allPosts.filter(
       (p) => dayjs(p.frontmatter.pubDate).format("YYYY-MM") === m
     ).length,
-  };
-});
+  }
+})
 ---
 
 <MainLayout title={title} description={description}>

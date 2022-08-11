@@ -1,15 +1,15 @@
 ---
-import dayjs from "dayjs";
-import TagsInline from "./TagsInline.astro";
+import dayjs from "dayjs"
+import TagsInline from "./TagsInline.astro"
 export interface Props {
-  title: string;
-  tags: string[];
-  pubDate: string;
-  url: string;
+  title: string
+  tags: string[]
+  pubDate: string
+  url?: string
 }
 
-const { title, tags, pubDate, url } = Astro.props as Props;
-const date = dayjs(pubDate);
+const { title, tags, pubDate, url = "#" } = Astro.props as Props
+const date = dayjs(pubDate)
 ---
 
 <article class="post-preview">

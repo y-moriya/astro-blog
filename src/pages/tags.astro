@@ -1,12 +1,11 @@
 ---
 // Layout Import
-import MainLayout from "../layouts/MainLayout.astro";
-import Tags from "../components/Tags.astro";
+import MainLayout from "../layouts/MainLayout.astro"
+import Tags from "../components/Tags.astro"
 
-let title = "All tags";
-let description = "All the tags used so far...";
-// Data Fetching: List all Markdown posts in the repo.
-const allPosts = await Astro.glob("./posts/*.md");
+let title = "All tags"
+let description = "All the tags used so far..."
+const allPosts = await Astro.glob("./posts/*.md")
 const tags = [
   ...new Set(
     [].concat.apply(
@@ -14,7 +13,7 @@ const tags = [
       allPosts.map((post) => post.frontmatter.tags)
     )
   ),
-];
+]
 ---
 
 <MainLayout title={title} description={description}>

@@ -1,33 +1,33 @@
 ---
-import MainLayout from "../../layouts/MainLayout.astro";
-import BlogPostSimple from "../../components/BlogPostSimple.astro";
-import dayjs from "dayjs";
+import MainLayout from "../../layouts/MainLayout.astro"
+import BlogPostSimple from "../../components/BlogPostSimple.astro"
+import dayjs from "dayjs"
 
 export async function getStaticPaths({}) {
-  const allPosts = await Astro.glob("../posts/*.md");
-  const allMonths = new Set();
+  const allPosts = await Astro.glob("../posts/*.md")
+  const allMonths = new Set()
   allPosts.map((post) => {
     post.frontmatter.pubDate &&
-      allMonths.add(dayjs(post.frontmatter.pubDate).format("YYYY-MM"));
-  });
+      allMonths.add(dayjs(post.frontmatter.pubDate).format("YYYY-MM"))
+  })
 
   return Array.from(allMonths).map((month) => {
     const filteredPosts = allPosts.filter(
       (post) => dayjs(post.frontmatter.pubDate).format("YYYY-MM") === month
-    );
+    )
     return {
       params: { month },
       props: {
         page: filteredPosts,
       },
-    };
-  });
+    }
+  })
 }
 
-const { page } = Astro.props;
-const { month } = Astro.params;
-let title = `${dayjs(month).format("YYYY年MM月")}`;
-let description = `${dayjs(month).format("YYYY年MM月")}の投稿`;
+const { page } = Astro.props
+const { month } = Astro.params
+let title = `${dayjs(month).format("YYYY年MM月")}`
+let description = `${dayjs(month).format("YYYY年MM月")}の投稿`
 ---
 
 <MainLayout title={title} description={description}>
@@ -38,14 +38,14 @@ let description = `${dayjs(month).format("YYYY年MM月")}の投稿`;
         return (
           new Date(b.frontmatter.pubDate).valueOf() -
           new Date(a.frontmatter.pubDate).valueOf()
-        );
+        )
       })
       .map(({ url, frontmatter }: any) => (
         <ul>
           <BlogPostSimple
             title={frontmatter.title}
             pubDate={frontmatter.pubDate}
-            url={url as string}
+            url={url}
           />
         </ul>
       ))
