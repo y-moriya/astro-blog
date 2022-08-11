@@ -14,7 +14,7 @@ const pinnedPosts = unsortedPosts.filter((p) => {
 ---
 
 <MainLayout title="Top | Stoicism" description="なんかしらの日記のようなものを綴るブログ">
-	<h3 class="description">なんかしらの日記のようなものを綴るブログ</h3>
+	<h2 class="description">なんかしらの日記のようなものを綴るブログ</h2>
 	<h2>固定されている記事</h2>
 	<hr>
 {pinnedPosts.map(({ url, frontmatter }: any) => (
@@ -28,7 +28,7 @@ const pinnedPosts = unsortedPosts.filter((p) => {
 </MainLayout>
 
 <style>
-	h3.description {
+	h2.description {
 		margin-bottom: 2.5rem;
 	}
 </style>
