@@ -52,7 +52,7 @@ title = %Q(#{titledate} #{home}VS#{away}#{openstr}　#阪神タイガース)
 og_title = %Q(#{home} #{home_score} - #{away_score} #{away})
 h2 = %Q(## #{home} #{home_score} - #{away_score} #{away})
 
-file = "src/pages/posts/" + datestr + "_" + teams[home] + teams[away]
+file = "src/pages/posts/" + datestr + "_" + teams[home] + teams[away] + ".md"
 unless File.exists?(file)
   f = File.open(file, "w+")
   f.puts("---\ntitle: #{title}\npubDate: #{now.to_s}\ntags: [\"野球\"]\nog_title: #{og_title}\n---\n\n#{h2}\n\n#{href}\n\n")
