@@ -23,7 +23,7 @@ const pages = {
 }
 
 const requestPathname = new URL(Astro.request.url).pathname
-const active = (entryUrl: string): false | "active" => {
+const active = (entryUrl: string) => {
   if (requestPathname.match(/\/posts\/\d+/) && entryUrl === "/posts/1") {
     return "active"
   }
@@ -33,7 +33,10 @@ const active = (entryUrl: string): false | "active" => {
   if (requestPathname.match(/\/archives\/.+/) && entryUrl === "/archives") {
     return "active"
   }
-  return requestPathname === entryUrl && "active"
+  if (requestPathname === entryUrl) {
+    return  "active"
+  }
+  return null;
 }
 ---
 
