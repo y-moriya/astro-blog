@@ -23,7 +23,7 @@ const {
 } = Astro.props as Props
 
 const defaultOgImage = Astro.url.pathname.replace(
-  /^\/posts\/(.+)$/,
+  /^\/posts\/(.+)\/$/,
   `${Astro.url.origin}/og-image/$1.jpg`
 )
 
