@@ -225,6 +225,7 @@ p {
 
 a {
   text-underline-offset: 20%;
+  word-wrap: break-word;
 }
 
 a:hover,

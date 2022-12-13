@@ -1,6 +1,6 @@
 {
-  "name": "@example/blog",
-  "version": "0.0.1",
+  "name": "stoicism",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -11,18 +11,18 @@
     "format": "prettier -w --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@astrojs/preact": "^1.0.0",
-    "astro": "^1.2.7"
+    "@astrojs/preact": "^1.2.0",
+    "astro": "^1.6.15"
   },
   "dependencies": {
-    "@astrojs/rss": "^1.0.0",
-    "@mapbox/node-pre-gyp": "^1.0.9",
-    "@types/node": "^18.7.1",
-    "canvas": "^2.9.3",
-    "dayjs": "^1.11.4",
+    "@astrojs/rss": "^1.1.0",
+    "@mapbox/node-pre-gyp": "^1.0.10",
+    "@types/node": "^18.11.14",
+    "canvas": "^2.10.2",
+    "dayjs": "^1.11.7",
     "node-path": "^0.0.3",
-    "preact": "^10.7.3",
-    "prettier": "^2.7.1",
-    "prettier-plugin-astro": "^0.5.0"
+    "preact": "^10.11.3",
+    "prettier": "^2.8.1",
+    "prettier-plugin-astro": "^0.5.5"
   }
 }
