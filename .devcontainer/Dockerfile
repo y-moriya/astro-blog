@@ -7,6 +7,7 @@ RUN apt update && export DEBIAN_FRONTEND=noninteractive \
     && apt -y install --no-install-recommends build-essential libcairo2-dev libpango1.0-dev libjpeg-dev libgif-dev librsvg2-dev
 
 RUN apt -y install ruby
+RUN gem install nokogiri
 
 # [Optional] Uncomment if you want to install an additional version of node using nvm
 # ARG EXTRA_NODE_VERSION=10
@@ -14,3 +15,4 @@ RUN apt -y install ruby
 
 # [Optional] Uncomment if you want to install more global node packages
 RUN su node -c "npm install -g pnpm"
+RUN su node -c "npm install -g vite@latest"
