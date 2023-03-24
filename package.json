@@ -11,8 +11,8 @@
     "format": "prettier -w --plugin-search-dir=. ."
   },
   "devDependencies": {
-    "@astrojs/preact": "^1.2.0",
-    "astro": "^2.0.1",
+    "@astrojs/preact": "^2.1.0",
+    "astro": "^2.1.6",
     "ts-node": "^10.9.1",
     "typescript": ">=2.7"
   },
