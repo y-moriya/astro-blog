@@ -1,0 +1,7 @@
+---
+const redirectPage = Astro.url.toString().replace(Astro.url.pathname, `/posts${Astro.url.pathname}`);
+
+---
+404 page not found.
+
+Are you looking for this page?: <a href={redirectPage}>{ redirectPage }</a>
