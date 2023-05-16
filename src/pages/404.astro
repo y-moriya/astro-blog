@@ -1,7 +1,14 @@
 ---
+import MainLayout from "../layouts/MainLayout.astro"
 const redirectPage = Astro.url.toString().replace(Astro.url.pathname, `/posts${Astro.url.pathname}`);
-
 ---
-404 page not found.
+<MainLayout title="404" description="なんかしらの日記のようなものを綴るブログ">
+  <h2>404 page not found.</h2>
+  こちらのURLにあるかもしれません <a href={redirectPage}>{ redirectPage }</a>
+</MainLayout>
 
-Are you looking for this page?: <a href={redirectPage}>{ redirectPage }</a>
+<style>
+  h2.description {
+    margin-bottom: 2.5rem;
+  }
+</style>
