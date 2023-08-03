@@ -390,5 +390,5 @@
 /2023-05-20_TC/ /posts/2023-05-20_TC/
 /astro-blog/ /posts/astro-blog/
 /first-post/ /posts/first-post/
-/.well-known/host-meta https://fed.brid.gy/.well-known/host-meta* 301
-/.well-known/webfinger https://fed.brid.gy/.well-known/webfinger* 301
+/.well-known/host-meta https://fed.brid.gy/.well-known/host-meta 301
+/.well-known/webfinger https://fed.brid.gy/.well-known/webfinger 301
