@@ -8,7 +8,7 @@ og_title:
 
 このブログを Fediverse 対応しました。
 
-[@stoicism.gunjobiyori.com@stoicism.gunjobiyori.com](https://fed.brid.gy/web/stoicism.gunjobiyori.com) でフォローできます。
+[@stoicism.gunjobiyori.com@fed.brid.gy](https://fed.brid.gy/stoicism.gunjobiyori.com) でフォローできます。
 
 以下を大いに参考にしました。
 
