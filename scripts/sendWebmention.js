@@ -11,7 +11,7 @@ async function sendWebmention(oldCommitHash, newCommitHash) {
   const files = diff.split('\n')
   console.log(files)
 
-  const filtered = files.filter((file) => file.indexOf('posts/') !== -1)
+  const filtered = files.filter((file) => file.indexOf('posts/') !== -1 && file.indexOf('.md') !== -1)
 
   if (filtered.length >= 1) {
     await sleep(110)
