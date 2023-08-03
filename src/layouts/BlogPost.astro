@@ -27,6 +27,8 @@ const defaultOgImage = Astro.url.pathname.replace(
   `${Astro.url.origin}/og-image/$1.jpg`
 )
 
+const url = new URL(Astro.url.href)
+
 const allPosts = await Astro.glob("../pages/posts/*.md")
 const sortedPosts = allPosts.sort((a, b) => {
   return (
@@ -47,7 +49,7 @@ const next = i === sortedPosts.length - 1 ? null : sortedPosts.at(i + 1)
 
   <body>
     <Header />
-    <article class="wrapper content">
+    <article class="wrapper content h-entry">
       <header>
         {
           heroImage && (
@@ -62,7 +64,9 @@ const next = i === sortedPosts.length - 1 ? null : sortedPosts.at(i + 1)
         }
         <h1 class="title">{title}</h1>
         <div class="flex">
-          <time>{dayjs(pubDate).format("YYYY-MM-DD")}</time>
+          <a class="u-url" href={url}>
+            Published <time class="dt-published">{pubDate}</time>
+          </a>
           <TagsInline tags={tags} />
         </div>
       </header>
