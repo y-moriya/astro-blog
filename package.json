@@ -12,7 +12,7 @@
   },
   "devDependencies": {
     "@astrojs/preact": "^2.1.0",
-    "astro": "^2.1.6",
+    "astro": "^3.0.3",
     "ts-node": "^10.9.1",
     "typescript": ">=2.7"
   },
